@@ -2,6 +2,7 @@ package com.dashboard.personal.service;
 
 import com.dashboard.personal.entity.Task;
 import com.dashboard.personal.entity.TaskStatus;
+import com.dashboard.personal.entity.User;
 import com.dashboard.personal.repository.TaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,8 +20,16 @@ public class TaskService {
         return taskRepository.findAllByOrderByPriorityDesc();
     }
 
+    public List<Task> getAllTasksByUser(User user) {
+        return taskRepository.findByUserOrderByPriorityDesc(user);
+    }
+
     public List<Task> getTasksByStatus(TaskStatus status) {
         return taskRepository.findByStatusOrderByPriorityDesc(status);
+    }
+
+    public List<Task> getTasksByUserAndStatus(User user, TaskStatus status) {
+        return taskRepository.findByUserAndStatusOrderByPriorityDesc(user, status);
     }
 
     public Task saveTask(Task task) {

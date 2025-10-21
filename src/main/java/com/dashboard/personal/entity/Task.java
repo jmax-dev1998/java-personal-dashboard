@@ -20,6 +20,10 @@ public class Task {
     private LocalDateTime dueDate;
     private Integer priority;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private User user;
+
     public Task() {
         this.createdAt = LocalDateTime.now();
         this.status = TaskStatus.PENDING;
@@ -54,4 +58,7 @@ public class Task {
 
     public Integer getPriority() { return priority; }
     public void setPriority(Integer priority) { this.priority = priority; }
+
+    public User getUser() { return user; }
+    public void setUser(User user) { this.user = user; }
 }

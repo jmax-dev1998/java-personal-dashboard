@@ -1,6 +1,7 @@
 package com.dashboard.personal.service;
 
 import com.dashboard.personal.entity.Note;
+import com.dashboard.personal.entity.User;
 import com.dashboard.personal.repository.NoteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,6 +17,10 @@ public class NoteService {
 
     public List<Note> getAllNotes() {
         return noteRepository.findAllByOrderByUpdatedAtDesc();
+    }
+
+    public List<Note> getAllNotesByUser(User user) {
+        return noteRepository.findByUserOrderByUpdatedAtDesc(user);
     }
 
     public Note saveNote(Note note) {
