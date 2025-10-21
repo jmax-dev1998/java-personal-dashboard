@@ -1,6 +1,6 @@
 <!-- src/main/resources/templates/dashboard.html -->
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -51,17 +51,23 @@
                         <form th:action="@{/tasks}" th:object="${newTask}" method="post">
                             <div class="row g-3">
                                 <div class="col-md-4">
-                                    <input type="text" class="form-control" th:field="*{title}" placeholder="Task title" required>
+                                    <label style="width: 100%">
+                                        <input type="text" class="form-control" th:field="*{title}" placeholder="Task title" required>
+                                    </label>
                                 </div>
                                 <div class="col-md-3">
-                                    <input type="datetime-local" class="form-control" th:field="*{dueDate}">
+                                    <label style="width: 100%">
+                                        <input type="datetime-local" class="form-control" th:field="*{dueDate}">
+                                    </label>
                                 </div>
                                 <div class="col-md-3">
-                                    <select class="form-select" th:field="*{priority}">
-                                        <option value="1">Low Priority</option>
-                                        <option value="2">Medium Priority</option>
-                                        <option value="3">High Priority</option>
-                                    </select>
+                                    <label style="width: 100%">
+                                        <select class="form-select" th:field="*{priority}">
+                                            <option value="1">Low Priority</option>
+                                            <option value="2">Medium Priority</option>
+                                            <option value="3">High Priority</option>
+                                        </select>
+                                    </label>
                                 </div>
                                 <div class="col-md-2">
                                     <button type="submit" class="btn btn-primary w-100">Add Task</button>
@@ -157,10 +163,14 @@
                 <!-- Add Note Form -->
                 <form th:action="@{/notes}" th:object="${newNote}" method="post" class="mb-4">
                     <div class="mb-3">
-                        <input type="text" class="form-control" th:field="*{title}" placeholder="Note title" required>
+                        <label style="width: 100%">
+                            <input type="text" class="form-control" th:field="*{title}" placeholder="Note title" required>
+                        </label>
                     </div>
                     <div class="mb-3">
-                        <textarea class="form-control" th:field="*{content}" rows="3" placeholder="Note content" required></textarea>
+                        <label style="width: 100%">
+                            <textarea class="form-control" th:field="*{content}" rows="3" placeholder="Note content" required></textarea>
+                        </label>
                     </div>
                     <button type="submit" class="btn btn-success w-100">Add Note</button>
                 </form>
