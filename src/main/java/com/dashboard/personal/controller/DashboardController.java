@@ -112,4 +112,27 @@ public class DashboardController {
         noteService.deleteNote(id);
         return "redirect:/";
     }
+
+    @GetMapping("/profile")
+    public String profile(Model model, Authentication authentication) {
+        User currentUser = userService.findByUsername(authentication.getName()).orElseThrow();
+        model.addAttribute("currentUser", currentUser);
+        return "profile";
+    }
+
+    @PostMapping("/profile")
+    public String updateProfile(@ModelAttribute User updatedUser, Authentication authentication) {
+        try {
+            User currentUser = userService.findByUsername(authentication.getName()).orElseThrow();
+
+            // Update only allowed fields
+            currentUser.setFullName(updatedUser.getFullName());
+            currentUser.setProfilePictureUrl(updatedUser.getProfilePictureUrl());
+
+            userService.updateUser(currentUser);
+            return "redirect:/profile?success";
+        } catch (Exception e) {
+            return "redirect:/profile?error";
+        }
+    }
 }

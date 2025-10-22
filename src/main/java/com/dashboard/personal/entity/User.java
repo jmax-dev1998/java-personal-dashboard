@@ -20,6 +20,12 @@ public class User {
     @Column(unique = true, nullable = false)
     private String email;
 
+    @Column(nullable = true)
+    private String fullName;
+
+    @Column(nullable = true)
+    private String profilePictureUrl;
+
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<Task> tasks;
 
@@ -33,6 +39,14 @@ public class User {
         this.username = username;
         this.password = password;
         this.email = email;
+    }
+
+    public User(String username, String password, String email, String fullName, String profilePictureUrl) {
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.fullName = fullName;
+        this.profilePictureUrl = profilePictureUrl;
     }
 
     // Getters and Setters
@@ -66,6 +80,22 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    public String getProfilePictureUrl() {
+        return profilePictureUrl;
+    }
+
+    public void setProfilePictureUrl(String profilePictureUrl) {
+        this.profilePictureUrl = profilePictureUrl;
     }
 
     public Set<Task> getTasks() {
